@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
