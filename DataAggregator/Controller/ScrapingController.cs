@@ -11,7 +11,7 @@ namespace DataAggregator.Controllers
         public async Task<IActionResult> GetScrapedContent()
         {
             string url = "https://www.scrapingcourse.com/ecommerce/";
-
+            //default link: https://www.scrapingcourse.com/ecommerce/
             var web = new HtmlWeb();
             var document = await web.LoadFromWebAsync(url);
 
@@ -34,9 +34,17 @@ namespace DataAggregator.Controllers
                     }
 
                     node.SetAttributeValue("src", newImageUrl);
-
                     node.Attributes.Remove("srcset");
                     node.Attributes.Remove("sizes");
+                }
+            }
+
+            var h1Nodes = document.DocumentNode.SelectNodes("//a[@class='site-branding site-title']");
+            if (h1Nodes != null)
+            {
+                foreach (var node in h1Nodes)
+                {
+                    node.InnerHtml = "No, i didnt make this webpage!";
                 }
             }
 
