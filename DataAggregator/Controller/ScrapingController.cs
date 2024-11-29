@@ -14,6 +14,9 @@ namespace DataAggregator.Controllers
             var document = await web.LoadFromWebAsync(url);
 
             string FullHtml = document.DocumentNode.OuterHtml;
+            string IndexPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Index.html");
+            string HtmlToIndex = await System.IO.File.ReadAllTextAsync(IndexPath);
+            string UpdateIndex = HtmlToIndex.Replace("{{SCRAPED_HTML}}", FullHtml);
 
             return Content(FullHtml, "text/html");
         }
