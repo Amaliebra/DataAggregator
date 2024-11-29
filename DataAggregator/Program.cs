@@ -1,20 +1,15 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.MapControllers();
-
 app.UseHttpsRedirection();
 
-app.UseDefaultFiles();
-
-app.UseStaticFiles();
+app.MapControllers();
 
 app.UseRouting();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Scraping}/{action=Index}/{id?}");
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.Run();

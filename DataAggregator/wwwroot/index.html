@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+</head>
+
+<body>
+    <h1>Hello</h1>
+    <div id="content">
+        
+    </div>
+    <script>
+        fetch('/api/scrape')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('content').innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Error fetching....', error);
+            document.getElementById('content').textContent = 'Failed to load content...';
+        });
+    </script>
+</body>
+
+</html>

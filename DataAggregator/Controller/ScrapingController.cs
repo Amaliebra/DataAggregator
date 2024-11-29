@@ -3,20 +3,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DataAggregator.Controllers
 {
+    [ApiController]
+    [Route("api/scrape")]
     public class ScrapingController : Controller
     {
-        [HttpGet("/")]
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> GetScrapedContent()
         {
-            string url = "https://www.scrapethissite.com/pages/forms/";
+            string url = "https://www.scrapingcourse.com/ecommerce/";
 
             var web = new HtmlWeb();
             var document = await web.LoadFromWebAsync(url);
 
             string FullHtml = document.DocumentNode.OuterHtml;
-            string EncodedHtml = System.Web.HttpUtility.HtmlEncode(FullHtml);
 
-            return View(EncodedHtml);
+            return Content(FullHtml);
         }
     }
 }
