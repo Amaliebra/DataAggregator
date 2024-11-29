@@ -13,11 +13,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
-{
-    _ = endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Scraping}/{action=Index}/{id?}");
-});
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Scraping}/{action=Index}/{id?}");
 
 app.Run();
