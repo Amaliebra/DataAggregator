@@ -11,8 +11,10 @@ namespace DataAggregator.Controllers
         [HttpGet]
         public async Task<IActionResult> GetScrapedContent()
         {
+            //-----------------------URL-------------------------------
             string url = "https://www.scrapethissite.com/lessons/sign-up/";
             //default link: https://www.scrapingcourse.com/ecommerce/
+
             var web = new HtmlWeb();
             var document = await web.LoadFromWebAsync(url);
 
