@@ -1,3 +1,4 @@
+using DataAggregator.Models;
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +11,15 @@ namespace DataAggregator.Controllers
         [HttpGet]
         public async Task<IActionResult> GetScrapedContent()
         {
-            string url = "https://www.scrapingcourse.com/ecommerce/";
+            string url = "https://www.scrapethissite.com/lessons/sign-up/";
             //default link: https://www.scrapingcourse.com/ecommerce/
             var web = new HtmlWeb();
             var document = await web.LoadFromWebAsync(url);
+
+            var HtmlData = new HtmlData
+            {
+                Url = url
+            };
 
             var ImageNode = document.DocumentNode.SelectNodes("//img");
             if (ImageNode != null)
@@ -39,13 +45,10 @@ namespace DataAggregator.Controllers
                 }
             }
 
-            var h1Nodes = document.DocumentNode.SelectNodes("//a[@class='site-branding site-title']");
+            var h1Nodes = document.DocumentNode.SelectSingleNode("//h1");
             if (h1Nodes != null)
             {
-                foreach (var node in h1Nodes)
-                {
-                    node.InnerHtml = "No, i didnt make this webpage!";
-                }
+                h1Nodes.InnerHtml = "No, i didnt make this webpage!";
             }
 
             string FullHtml = document.DocumentNode.OuterHtml;
