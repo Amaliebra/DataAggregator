@@ -12,7 +12,7 @@ namespace DataAggregator.Controllers
         public async Task<IActionResult> GetScrapedContent()
         {
             //-----------------------URL-------------------------------
-            string url = "https://www.scrapethissite.com/lessons/sign-up/";
+            string url = "https://www.scrapingcourse.com/ecommerce/";
             //default link: https://www.scrapingcourse.com/ecommerce/
 
             var web = new HtmlWeb();
